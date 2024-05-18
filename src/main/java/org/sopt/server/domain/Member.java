@@ -1,6 +1,6 @@
 package org.sopt.server.domain;
 
-import org.sopt.server.dto.MemberCreateDto;
+import org.sopt.server.dto.request.MemberCreateRequest;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -37,7 +37,7 @@ public class Member {
         this.correctCount = 0;
     }
 
-    public static Member from(final MemberCreateDto memberCreateDto) {
+    public static Member from(final MemberCreateRequest memberCreateDto) {
         return Member.builder()
                 .name(memberCreateDto.name())
                 .build();
