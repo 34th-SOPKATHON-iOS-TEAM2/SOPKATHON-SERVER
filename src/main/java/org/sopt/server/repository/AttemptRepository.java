@@ -12,4 +12,5 @@ public interface AttemptRepository extends JpaRepository<Attempt, Long> {
 
     @Query("SELECT a FROM Attempt a WHERE a.member.id = :memberId AND a.attemptedDate = :date")
     List<Attempt> getAttemptsByMemberIdAndDate(final Long memberId, final LocalDate date);
+
 }
