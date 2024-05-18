@@ -3,9 +3,11 @@ package org.sopt.server.controller;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.sopt.server.common.dto.ResponseDto;
+import org.sopt.server.dto.response.QuestionGetResponse;
 import org.sopt.server.dto.response.QuestionsResponse;
 import org.sopt.server.service.QuestionService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
