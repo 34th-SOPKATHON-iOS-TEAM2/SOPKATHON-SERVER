@@ -27,8 +27,6 @@ public class AttemptService {
         Question question = questionRepository.findById(attemptRequest.questionId())
                 .orElseThrow(() -> new NotFoundException(ErrorCode.QUESTION_NOT_FOUND));
 
-        member.increaseCorrectCount();
-
         attemptRepository.save(Attempt.of(attemptRequest.isCorrect(), member, question));
     }
 }
