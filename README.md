@@ -24,7 +24,7 @@
 ![image](https://github.com/34th-SOPKATHON-iOS-TEAM2/server/assets/113420297/b86b6e19-59ee-450f-ba19-99361b78ef13)
 
 ## Foldering 🗂️
-![image](https://github.com/34th-SOPKATHON-iOS-TEAM2/server/assets/113420297/365495bf-6ae4-4602-8013-badc05195aab)
+![image](https://github.com/34th-SOPKATHON-iOS-TEAM2/server/assets/113420297/1b5b7d8a-3132-4af1-ae4f-7b73b69f4902)
 
 ## API Specification 🔗
 [API 명세서 바로가기](https://www.notion.so/bohyunnkim/API-f3c0104eb3ec40d1bca1b84258c35803) <br>
