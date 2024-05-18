@@ -27,7 +27,7 @@ public class AttemptController {
     //문제풀이
     @PostMapping
     public ResponseDto<Void> attemptQuestion(
-            @RequestHeader Long memberId,
+            @RequestHeader(name = "memberId") Long memberId,
             @RequestBody @Valid final AttemptRequest attemptRequest) {
         attemptService.attemptQuestion(memberId, attemptRequest);
         return ResponseDto.success(null);

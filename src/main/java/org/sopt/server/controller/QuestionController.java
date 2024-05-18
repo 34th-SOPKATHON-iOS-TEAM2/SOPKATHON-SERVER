@@ -5,11 +5,9 @@ import lombok.RequiredArgsConstructor;
 import org.sopt.server.common.dto.ResponseDto;
 import org.sopt.server.dto.response.QuestionGetResponse;
 import org.sopt.server.dto.response.QuestionsResponse;
+import org.sopt.server.dto.response.SolutionResponse;
 import org.sopt.server.service.QuestionService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,5 +25,12 @@ public class QuestionController {
     @GetMapping
     public ResponseDto<List<QuestionsResponse>> getQuestionList() {
         return ResponseDto.success(questionService.getQuestionList());
+    }
+
+    @GetMapping("/{questionId}/solution")
+    public ResponseDto<SolutionResponse> getSolution(
+            @RequestHeader(name = "memberId") Long memberId,
+            @PathVariable Long questionId) {
+        return ResponseDto.success(questionService.getSolution(memberId, questionId));
     }
 }

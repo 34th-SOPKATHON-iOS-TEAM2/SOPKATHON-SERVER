@@ -19,9 +19,14 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "question", nullable = false)
     private String question;
 
+    @Column(name = "date", nullable = false)
     private LocalDate date;
+
+    @Column(name = "solution", nullable = false)
+    private String solution;
 
     @Enumerated(EnumType.ORDINAL)
     private QuestionType questionType;

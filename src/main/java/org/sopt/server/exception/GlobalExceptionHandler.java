@@ -50,7 +50,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(value = {NotFoundException.class})
-    public ResponseEntity<ResponseDto<?>> handleNotFoundException(final CommonException e) {
+    public ResponseEntity<ResponseDto<?>> handleNotFoundException(final NotFoundException e) {
         log.error("handle NotFound Exception: {}", e.getMessage());
         e.printStackTrace();
         HttpStatus status = e.getErrorCode().getHttpStatus();
