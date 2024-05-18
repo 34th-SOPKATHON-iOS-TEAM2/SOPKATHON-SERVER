@@ -30,6 +30,7 @@ public class AttemptController {
             @RequestBody @Valid final AttemptRequest attemptRequest) {
         attemptService.attemptQuestion(memberId, attemptRequest);
         return ResponseDto.success(null);
+    }
 
     @GetMapping
     public ResponseDto<List<AttemptsResponse>> getAttemptsByDate(
