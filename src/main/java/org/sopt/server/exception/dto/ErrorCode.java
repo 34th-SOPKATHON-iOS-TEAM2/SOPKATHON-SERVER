@@ -29,6 +29,7 @@ public enum ErrorCode {
 
     /* 500 - INTERNAL SERVER ERROR */
     INTERNAL_SERVER_ERROR(50000, HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error"),
+    DUPLICATE_MEMBER_NAME(50001, HttpStatus.INTERNAL_SERVER_ERROR, "중복되는 이름의 회원이 존재합니다."),
     ;
 
     final int status;
