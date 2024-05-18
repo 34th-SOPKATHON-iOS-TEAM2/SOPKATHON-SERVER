@@ -27,5 +27,5 @@ public class Question {
     private QuestionType questionType;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
-    private List<MemberQuestion> memberQuestions;
+    private List<Attempt> attempts;
 }

@@ -1,16 +1,13 @@
 package org.sopt.server.domain;
 
-import dto.MemberCreateDto;
+import org.sopt.server.dto.MemberCreateDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.annotations.DynamicInsert;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -29,7 +26,7 @@ public class Member {
     private Integer correctCount;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<MemberQuestion> memberQuestions;
+    private List<Attempt> attempts;
 
     public Integer increaseCorrectCount() {
         this.correctCount += 1;

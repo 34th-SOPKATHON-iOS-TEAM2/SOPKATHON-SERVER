@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Getter
 @Table(name = "member_question")
 @Entity
-public class MemberQuestion {
+public class Attempt {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,8 +32,8 @@ public class MemberQuestion {
     @JoinColumn(name = "question_id")
     private Question question;
 
-    public static MemberQuestion of(final boolean isCorrect, final Member member, final Question question) {
-        return MemberQuestion.builder()
+    public static Attempt of(final boolean isCorrect, final Member member, final Question question) {
+        return Attempt.builder()
                 .isCorrect(isCorrect)
                 .attemptedDate(question.getDate())
                 .member(member)
@@ -42,7 +42,7 @@ public class MemberQuestion {
     }
 
     @Builder
-    private MemberQuestion(final boolean isCorrect, final LocalDate attemptedDate, final Member member, final Question question) {
+    private Attempt(final boolean isCorrect, final LocalDate attemptedDate, final Member member, final Question question) {
         this.isCorrect = isCorrect;
         this.attemptedDate = attemptedDate;
         this.member = member;
