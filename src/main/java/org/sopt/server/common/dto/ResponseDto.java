@@ -8,6 +8,9 @@ import org.sopt.server.exception.CommonException;
 import org.sopt.server.exception.dto.ErrorCode;
 import org.sopt.server.exception.dto.ExceptionDto;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 public record ResponseDto<T>(
         @JsonIgnore HttpStatus httpStatus,
@@ -24,6 +27,21 @@ public record ResponseDto<T>(
 
     public static ResponseDto<?> fail(@NonNull final HttpStatus httpStatus, @NonNull final CommonException e) {
         return new ResponseDto<>(httpStatus, httpStatus.value(), null, ExceptionDto.from(e.getErrorCode()));
+    }
+
+    public static ResponseDto<?> fail(@NonNull final MethodArgumentNotValidException e) {
+        return new ResponseDto<>(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), null, ExceptionDto.from(
+                ErrorCode.BAD_REQUEST));
+    }
+
+    public static ResponseDto<?> fail(@NonNull final MethodArgumentTypeMismatchException e) {
+        return new ResponseDto<>(HttpStatus.BAD_REQUEST, HttpStatus.INTERNAL_SERVER_ERROR.value(), null, ExceptionDto.from(
+                ErrorCode.INTERNAL_SERVER_ERROR));
+    }
+
+    public static ResponseDto<?> fail(@NonNull final MissingServletRequestParameterException e) {
+        return new ResponseDto<>(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), null, ExceptionDto.from(
+                ErrorCode.BAD_REQUEST));
     }
 
     public static ResponseDto<?> fail(@NonNull final Exception e) {
