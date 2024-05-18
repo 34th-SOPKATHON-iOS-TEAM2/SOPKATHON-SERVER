@@ -16,6 +16,12 @@ public class QuestionController {
 
     private final QuestionService questionService;
 
+    @GetMapping("/{questionId}")
+    public ResponseDto<QuestionGetResponse> getQuestion(
+            @PathVariable Long questionId) {
+        return ResponseDto.success(questionService.getQuestion(questionId));
+    }
+
     @GetMapping
     public ResponseDto<List<QuestionsResponse>> getQuestionList() {
         return ResponseDto.success(questionService.getQuestionList());
