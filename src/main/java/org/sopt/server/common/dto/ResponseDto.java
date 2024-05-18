@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import io.micrometer.common.lang.NonNull;
 import io.micrometer.common.lang.Nullable;
 import org.sopt.server.exception.CommonException;
+import org.sopt.server.exception.NotFoundException;
 import org.sopt.server.exception.dto.ErrorCode;
 import org.sopt.server.exception.dto.ExceptionDto;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,10 @@ public record ResponseDto<T>(
     }
 
     public static ResponseDto<?> fail(@NonNull final HttpStatus httpStatus, @NonNull final CommonException e) {
+        return new ResponseDto<>(httpStatus, httpStatus.value(), null, ExceptionDto.from(e.getErrorCode()));
+    }
+
+    public static ResponseDto<?> fail(@NonNull final HttpStatus httpStatus, @NonNull final NotFoundException e) {
         return new ResponseDto<>(httpStatus, httpStatus.value(), null, ExceptionDto.from(e.getErrorCode()));
     }
 

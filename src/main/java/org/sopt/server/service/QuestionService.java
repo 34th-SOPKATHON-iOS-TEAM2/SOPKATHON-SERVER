@@ -2,10 +2,15 @@ package org.sopt.server.service;
 
 import lombok.RequiredArgsConstructor;
 import org.sopt.server.common.dto.ResponseDto;
+import org.sopt.server.domain.Attempt;
+import org.sopt.server.domain.Member;
 import org.sopt.server.domain.Question;
 import org.sopt.server.dto.response.QuestionGetResponse;
+import org.sopt.server.dto.response.SolutionResponse;
 import org.sopt.server.exception.NotFoundException;
 import org.sopt.server.exception.dto.ErrorCode;
+import org.sopt.server.repository.AttemptRepository;
+import org.sopt.server.repository.MemberRepository;
 import org.sopt.server.repository.QuestionRepository;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +25,8 @@ import org.sopt.server.dto.response.QuestionsResponse;
 public class QuestionService {
 
     private final QuestionRepository questionRepository;
+    private final MemberRepository memberRepository;
+    private final AttemptRepository attemptRepository;
 
     public QuestionGetResponse getQuestion(Long questionId) {
         Question question = questionRepository.findById(questionId)
@@ -40,5 +47,18 @@ public class QuestionService {
 
     public List<QuestionsResponse> getQuestionList() {
         return QuestionsResponse.listOf(questionRepository.findFirstQuestionsEachDay());
+    }
+
+    public SolutionResponse getSolution(Long memberId, Long questionId) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new NotFoundException(ErrorCode.MEMBER_NOT_FOUND));
+
+        Question question = questionRepository.findById(questionId)
+                .orElseThrow(() -> new NotFoundException(ErrorCode.QUESTION_NOT_FOUND));
+
+        Attempt attempt = attemptRepository.findByMemberAndQuestion(member, question)
+                .orElseThrow(() -> new NotFoundException(ErrorCode.ATTEMPT_NOT_FOUND));
+
+        return SolutionResponse.from(attempt);
     }
 }

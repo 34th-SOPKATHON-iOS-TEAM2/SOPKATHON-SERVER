@@ -22,6 +22,8 @@ public enum ErrorCode {
     NOT_FOUND(40400, HttpStatus.NOT_FOUND, "Not Found"),
     QUESTION_NOT_FOUND(40401, HttpStatus.NOT_FOUND, "해당하는 질문이 없습니다."),
     MEMBER_NOT_FOUND(40402, HttpStatus.NOT_FOUND, "해당하는 회원이 없습니다."),
+    CORRECT_OPTION_NOT_FOUND(40403, HttpStatus.NOT_FOUND, "정답인 옵션이 없습니다."),
+    ATTEMPT_NOT_FOUND(40404, HttpStatus.NOT_FOUND, "정답인 옵션이 없습니다."),
 
     /* 405 - METHOD NOT ALLOWED */
     METHOD_NOT_ALLOWED(40500, HttpStatus.METHOD_NOT_ALLOWED, "Method Not Allowed"),
