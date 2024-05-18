@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.sopt.server.common.dto.ResponseDto;
 import org.sopt.server.dto.response.AttemptsResponse;
 import org.sopt.server.service.AttemptService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class AttemptController {
     @GetMapping
     public ResponseDto<List<AttemptsResponse>> getAttemptsByDate(
             @RequestHeader(name = "memberId") final Long memberId,
-            @RequestParam(name = "date") final LocalDate date
+            @RequestParam(name = "date") @DateTimeFormat(pattern = "yyyy-MM-dd") final LocalDate date
     ) {
         return ResponseDto.success(attemptService.getAttemptsByDate(memberId, date));
     }
