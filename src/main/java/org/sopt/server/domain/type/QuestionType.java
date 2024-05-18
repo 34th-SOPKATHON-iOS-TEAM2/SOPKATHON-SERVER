@@ -1,4 +1,4 @@
-package org.sopt.server.domain;
+package org.sopt.server.domain.type;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
