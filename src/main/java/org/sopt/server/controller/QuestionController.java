@@ -1,23 +1,29 @@
 package org.sopt.server.controller;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.sopt.server.common.dto.ResponseDto;
-import org.sopt.server.dto.response.QuestionGetResponse;
+import org.sopt.server.dto.response.QuestionsResponse;
 import org.sopt.server.service.QuestionService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1")
-
+@RequestMapping("/api/v1/questions")
 public class QuestionController {
 
     private final QuestionService questionService;
 
-    @GetMapping("/questions/{questionId}")
+    @GetMapping("/{questionId}")
     public ResponseDto<QuestionGetResponse> getQuestion(
             @PathVariable Long questionId) {
         return ResponseDto.success(questionService.getQuestion(questionId));
     }
 
+    @GetMapping
+    public ResponseDto<List<QuestionsResponse>> getQuestionList() {
+        return ResponseDto.success(questionService.getQuestionList());
+    }
 }

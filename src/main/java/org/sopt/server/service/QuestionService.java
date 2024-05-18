@@ -11,11 +11,12 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
 import java.util.List;
+import org.sopt.server.dto.response.QuestionsResponse;
 
 @Service
 @RequiredArgsConstructor
-
 public class QuestionService {
 
     private final QuestionRepository questionRepository;
@@ -35,5 +36,9 @@ public class QuestionService {
         Long nextQuestionId = questionsOnDate.get(nextIndex).getId();
 
         return QuestionGetResponse.of(question, nextQuestionId);
+    }
+
+    public List<QuestionsResponse> getQuestionList() {
+        return QuestionsResponse.listOf(questionRepository.findFirstQuestionsEachDay());
     }
 }
