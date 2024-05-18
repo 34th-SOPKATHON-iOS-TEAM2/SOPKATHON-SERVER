@@ -14,7 +14,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(value = {IllegalArgumentException.class, MethodArgumentTypeMismatchException.class})
+    @ExceptionHandler(value = {IllegalArgumentException.class})
     public ResponseEntity<ResponseDto<?>> handleIllegalArgumentException(final IllegalArgumentException e) {
         log.error("handle Illegal Argument Exception: {}", e.getMessage());
         return new ResponseEntity<>(ResponseDto.fail(e), HttpStatus.BAD_REQUEST);
@@ -29,14 +29,14 @@ public class GlobalExceptionHandler {
 
     // 메소드의 인자 타입이 일치하지 않을 때 발생하는 예외
     @ExceptionHandler(value = {MethodArgumentTypeMismatchException.class})
-    public ResponseEntity<ResponseDto<?>> handleArgumentNotValidException(MethodArgumentTypeMismatchException e) {
+    public ResponseEntity<ResponseDto<?>> handleArgumentTypeMistmatchException(MethodArgumentTypeMismatchException e) {
         log.error("handle Method Argument Type Mismatch Exception: {}", e.getMessage());
         return new ResponseEntity<>(ResponseDto.fail(e), HttpStatus.BAD_REQUEST);
     }
 
     // 필수 파라미터가 누락되었을 때 발생하는 예외
     @ExceptionHandler(value = {MissingServletRequestParameterException.class})
-    public ResponseEntity<ResponseDto<?>> handleArgumentNotValidException(MissingServletRequestParameterException e) {
+    public ResponseEntity<ResponseDto<?>> handleMissingRequestParametersException(MissingServletRequestParameterException e) {
         log.error("handle Missing Servlet Request Params Exception: {}", e.getMessage());
         return new ResponseEntity<>(ResponseDto.fail(e), HttpStatus.BAD_REQUEST);
     }
