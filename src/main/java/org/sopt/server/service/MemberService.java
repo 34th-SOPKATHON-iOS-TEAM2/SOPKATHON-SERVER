@@ -20,8 +20,8 @@ public class MemberService {
     public MemberCreateResponse saveMember(final MemberCreateRequest memberCreateRequest) {
         Optional<Member> opMember = memberRepository.findByName(memberCreateRequest.name());
         if (opMember.isPresent()) {
-            throw new CommonException(ErrorCode.DUPLICATE_MEMBER_NAME);
+            return MemberCreateResponse.of(false, memberRepository.save(Member.from(memberCreateRequest)));
         }
-        return MemberCreateResponse.of(memberRepository.save(Member.from(memberCreateRequest)));
+        return MemberCreateResponse.of(true, memberRepository.save(Member.from(memberCreateRequest)));
     }
 }
