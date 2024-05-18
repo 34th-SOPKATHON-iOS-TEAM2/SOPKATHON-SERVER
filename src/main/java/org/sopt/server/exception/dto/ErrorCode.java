@@ -20,6 +20,7 @@ public enum ErrorCode {
 
     /* 404 - NOT FOUND */
     NOT_FOUND(40400, HttpStatus.NOT_FOUND, "Not Found"),
+    QUESTION_NOT_FOUND(40401, HttpStatus.NOT_FOUND, "해당하는 질문이 없습니다."),
 
     /* 405 - METHOD NOT ALLOWED */
     METHOD_NOT_ALLOWED(40500, HttpStatus.METHOD_NOT_ALLOWED, "Method Not Allowed"),

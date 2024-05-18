@@ -48,4 +48,12 @@ public class GlobalExceptionHandler {
         HttpStatus status = e.getErrorCode().getHttpStatus();
         return new ResponseEntity<>(ResponseDto.fail(status, e), status);
     }
+
+    @ExceptionHandler(value = {NotFoundException.class})
+    public ResponseEntity<ResponseDto<?>> handleNotFoundException(final CommonException e) {
+        log.error("handle NotFound Exception: {}", e.getMessage());
+        e.printStackTrace();
+        HttpStatus status = e.getErrorCode().getHttpStatus();
+        return new ResponseEntity<>(ResponseDto.fail(status, e), status);
+    }
 }
